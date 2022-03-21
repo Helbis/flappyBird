@@ -3,8 +3,7 @@ import React from "react";
 
 /* Game imports */
 import Game from "./Game/Game";
-import ButtonRestart from "./Buttons/ButtonRestart";
-import ButtonPausePlay from "./Buttons/ButtonPausePlay";
+import Controls from "./Controls/Controls";
 
 
 class App extends React.Component {
@@ -12,8 +11,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Game />
-        <ButtonRestart />
-        <ButtonPausePlay />
+        <Controls />
       </div>
     )
   }

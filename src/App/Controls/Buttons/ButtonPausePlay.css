@@ -1,0 +1,10 @@
+#pausePlay {
+    /* width: 100rem; */
+    /* margin-left: auto; */
+
+    background: green;
+}
+
+#pausePlay:hover {
+    background: gray;
+}
