@@ -13,8 +13,8 @@ class App extends React.Component {
       <div className="App">
         <Game />
         <ButtonRestart />
-        <ButtonPausePLay />
-      <div/>
+        <ButtonPausePlay />
+      </div>
     )
   }
 }
