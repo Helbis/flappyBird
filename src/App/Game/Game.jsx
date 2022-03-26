@@ -1,5 +1,8 @@
 import React from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
+import ButtonPausePlay from "../Controls/Buttons/ButtonPausePlay.jsx";
+
+import Bird from "./Objects/Bird.js";
 
 
 class Game extends React.Component {
@@ -9,20 +12,41 @@ class Game extends React.Component {
     this.state = {
       width: 500 * 1.618,
       height: 500
-    }
+    };
+
+    this.bird = new Bird();
   }
 
   sketch = ( p5 ) => {
-    p5.setup = () => p5.createCanvas(this.state.width, this.state.height, p5.WEBGL);
+    p5.keyPressed = () => {
+      // console.log(p5.keyCode); //DEBUG
+
+      switch ( p5.keyCode ) {
+        case 32: { /* SPACE */
+          this.bird.flap( p5 )
+          break;
+        }
+        case 80: { /* P */
+          this.bird.togglePlaying();
+          document.getElementById("pausePlay").click();
+
+          break;
+        }
+        default: { break; }
+      }
+    };
+
+    p5.setup = () => {
+      p5.createCanvas(this.state.width, this.state.height, p5.P2D);
+    };
+
     p5.draw = () => {
       p5.background(51, 51, 51);
-      p5.normalMaterial();
-      p5.push();
-      p5.rotateZ(p5.frameCount * 0.01);
-      p5.rotateX(p5.frameCount * 0.01);
-      p5.rotateY(p5.frameCount * 0.01);
-      p5.plane(100);
-      p5.pop();
+      this.bird.draw( p5 );
+
+      // Logic
+      this.bird.fall( p5 );
+
     };
   }
 
@@ -30,8 +54,8 @@ class Game extends React.Component {
     return (
       <ReactP5Wrapper id="Game" className="Game" sketch={this.sketch} />
     )
-  }
-}
+  };
+};
 
 
 export default Game;

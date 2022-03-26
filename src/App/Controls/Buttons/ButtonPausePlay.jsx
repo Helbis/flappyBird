@@ -11,39 +11,30 @@ class ButtonPausePlay extends React.Component {
   }
 
   pausePlay = () => {
-    // console.log(paused); //DEBUG
-
     if ( this.state.paused ) {
       this.setState((state) =>
-        (
-          {
-          paused : false
-          }
-        ));
+        {
+          return { paused : false };
+        });
     } else {
       this.setState((state) =>
-        (
-          {
-            paused : true
-          }
-        ));
-      // this.setState({paused : true});
+        {
+          return { paused : true };
+        });
     }
   }
 
   printPausedState = () => {
     if (this.state.paused) {
-      // console.log("True"); //DEBUG
       return "Play";
     } else {
-      // console.log("False"); //DEBUG
       return "Pause";
     }
   }
 
   render () {
     return (
-      <button id="pausePlay" onClick={this.pausePlay}>{this.printPausedState()}</button>
+      <button id="pausePlay" onClick={this.pausePlay} onKeyDown={console.log("pressed key")}>{this.printPausedState()}</button>
     )
   }
 }
