@@ -3,7 +3,7 @@ import React from "react";
 
 /* Game imports */
 import Game from "./Game/Game";
-import Controls from "./Controls/Controls";
+// import Controls from "./Controls/Controls";
 
 
 class App extends React.Component {
@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Game />
-        <Controls />
+        {/* <Controls /> */}
       </div>
     )
   }

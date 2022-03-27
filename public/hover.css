@@ -1,3 +1,3 @@
-button:hover {
-    background: gray;
+canvas:hover {
+    box-shadow: 10 10 10 pink;
 }
