@@ -11,12 +11,11 @@ class Game extends React.Component {
   constructor ( props ) {
     super(props);
 
-    this.p5 = {};
-
     this.state = {
       width: 500 * 1.618,
       height: 500,
-      fps: 60
+      fps: 60,
+      playing: true
     };
 
     this.bird = new Bird();
@@ -30,16 +29,20 @@ class Game extends React.Component {
 
   sketch = ( p5 ) => {
     p5.keyPressed = () => {
-      // console.log(p5.keyCode); //DEBUG
-
       switch ( p5.keyCode ) {
         case 32: { /* SPACE */
           this.bird.flap( p5 )
           break;
         }
         case 80: { /* P -> Pause / Play toggle */
-          this.bird.togglePlaying();
-          p5.noLoop();
+          // this.bird.togglePlaying();
+          if ( this.state.playing ) {
+            p5.noLoop();
+            this.setState({ playing: false });
+          } else {
+            p5.loop();
+            this.setState({ playing: true });
+          }
           break;
         }
         default: { break; }
@@ -51,23 +54,20 @@ class Game extends React.Component {
 
       p5.frameRate( this.state.fps );
 
-      this.p5 = p5; //DEBUG
-
       for (let i=0 ; i<10 ; i++) {
         this.pipes[i].changePos( (i + 10) * 100 );
       }
     };
 
     p5.draw = () => {
-      // document.getElementById("FPS").innerText = p5.floor( p5.getFrameRate() );
-
       p5.background(51, 51, 51);
+
+      // Draw
       this.bird.draw( p5 );
+      this.drawPipes( p5 );
 
       // Logic
       this.bird.fall( p5 );
-
-      this.drawPipes( p5 );
     }
   }
 
@@ -82,7 +82,6 @@ class Game extends React.Component {
     return (
       <>
         <ReactP5Wrapper id="Game" className="Game" sketch={this.sketch} />
-        <p id="FPS"></p>
       </>
     )
   }

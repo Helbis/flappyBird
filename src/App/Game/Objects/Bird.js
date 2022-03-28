@@ -10,29 +10,7 @@ class Bird {
     this.flapHeight = 50;
   }
 
-  stopGame() {
-    this.fallAmount = 0;
-    this.flapHeight = 0;
-  }
-
-  startGame() {
-    this.fallAmount = 1;
-    this.flapHeight = 50;
-  }
-
-  togglePlaying() {
-    if ( this.gameIsPaused ) {
-      this.startGame();
-      this.gameIsPaused = !this.gameIsPaused;
-    } else {
-      this.stopGame();
-      this.gameIsPaused = !this.gameIsPaused;
-    }
-  }
-
   flap ( p5 ) {
-    // let dy =
-
     this.pos.y -= this.flapHeight;
   }
 
